@@ -34,7 +34,7 @@ const TodoForm = ({addTodo}) => {
 
 const Todo = ({todo, remove}) => {
   // Each Todo
-  return (<a href="#" className="list-group-item" onClick={() => {remove(todo.id)}}>{todo.text}</a>);
+  return (<a href="#" className="list-group-item" onClick={() => {remove(todo.id)}}>{todo.todo}</a>);
 }
 
 const TodoList = ({todos, remove}) => {
@@ -56,7 +56,8 @@ class TodoApp extends React.Component{
     this.state = {
       data: []
     }
-    this.apiUrl = 'https://57b1924b46b57d1100a3c3f8.mockapi.io/api/todos'
+    // this.apiUrl = 'http://57b1924b46b57d1100a3c3f8.mockapi.io/api/todos'
+    this.apiUrl = 'http://5876dc8c8d247e1200241fc6.mockapi.io/api/v1/todos'
   }
   // Lifecycle method
   componentDidMount(){
@@ -70,7 +71,7 @@ class TodoApp extends React.Component{
   // Add todo handler
   addTodo(val){
     // Assemble data
-    const todo = {text: val}
+    const todo = {todo: val}
     // Update data
     axios.post(this.apiUrl, todo)
        .then((res) => {
